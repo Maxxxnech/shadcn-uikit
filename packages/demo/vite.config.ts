@@ -11,8 +11,9 @@ const resolveAtAlias = (): Plugin => ({
       const fs = await import('fs')
       const extensions = ['.ts', '.tsx', '.js', '.jsx', '.mjs', '.mts', '.css', '.scss']
 
-      // Determine base path based on importer location
-      const isFromUikit = importer.includes('/ui/src/')
+      // Determine base path based on importer location (normalize separators for Windows)
+      const normalizedImporter = importer.replace(/\\/g, '/')
+      const isFromUikit = normalizedImporter.includes('/ui/src/')
       const basePath = isFromUikit
         ? source.replace('@/', '../ui/src/')
         : source.replace('@/', './src/')

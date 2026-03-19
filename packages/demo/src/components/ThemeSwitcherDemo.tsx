@@ -47,6 +47,7 @@ export function ThemeSwitcherDemo() {
           >
             <option value="acronis-default">Acronis Default</option>
             <option value="acronis-ocean">Acronis Ocean</option>
+            <option value="acronis-white-label">Acronis White Label</option>
           </select>
         </div>
 

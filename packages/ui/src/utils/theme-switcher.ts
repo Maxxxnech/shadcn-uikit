@@ -6,12 +6,20 @@
  * color mode switching (light/dark).
  */
 
-export type ThemeName = 'acronis-default' | 'acronis-ocean' | 'cyber-chat' | 'custom'
+export type ThemeName = 'acronis-default' | 'acronis-ocean' | 'acronis-white-label' | 'cyber-chat' | 'custom'
+export type WhiteLabelNavVariant =
+  | 'purple' | 'brown' | 'sand' | 'light-gray' | 'dark-gray'
+  | 'ingram-micro' | 'red-fire-brick' | 'yellow-1c' | 'deep-sky-itkontoret'
+  | 'blue-yellow-uss-signal' | 'red-home-pl' | 'orange-tsukaeru-helpox'
+  | 'green-also-choise-df' | 'light-blue-hp' | 'purple-fusion-media'
+  | 'virtual-one' | 'telstra' | 'deep-purple' | 'pinky' | 'virtuozzo'
 export type ColorMode = 'light' | 'dark' | 'system'
 
 const THEME_CLASS_PREFIX = 'theme-'
+const NAV_CLASS_PREFIX = 'nav-'
 const DARK_CLASS = 'dark'
 const THEME_STORAGE_KEY = 'av-theme'
+const NAV_VARIANT_STORAGE_KEY = 'av-nav-variant'
 const COLOR_MODE_STORAGE_KEY = 'av-color-mode'
 
 /**
@@ -29,16 +37,25 @@ const COLOR_MODE_STORAGE_KEY = 'av-color-mode'
  */
 export function applyTheme(theme: ThemeName, persist = true): void {
   const root = document.documentElement
-  
+
   root.classList.forEach((className) => {
     if (className.startsWith(THEME_CLASS_PREFIX)) {
       root.classList.remove(className)
     }
   })
-  
+
+  // Remove nav variant classes when switching away from white-label
+  if (theme !== 'acronis-white-label') {
+    root.classList.forEach((className) => {
+      if (className.startsWith(NAV_CLASS_PREFIX)) {
+        root.classList.remove(className)
+      }
+    })
+  }
+
   const themeClass = `${THEME_CLASS_PREFIX}${theme}`
   root.classList.add(themeClass)
-  
+
   if (persist) {
     try {
       localStorage.setItem(THEME_STORAGE_KEY, theme)
@@ -49,8 +66,58 @@ export function applyTheme(theme: ThemeName, persist = true): void {
 }
 
 /**
+ * Apply a white-label nav variant to the document root element
+ * Only effective when the white-label theme is active.
+ *
+ * @param variant - The nav variant name to apply
+ * @param persist - Whether to persist the choice to localStorage (default: true)
+ *
+ * @example
+ * ```typescript
+ * applyTheme('acronis-white-label')
+ * applyNavVariant('ingram-micro')
+ * ```
+ */
+export function applyNavVariant(variant: WhiteLabelNavVariant, persist = true): void {
+  const root = document.documentElement
+
+  root.classList.forEach((className) => {
+    if (className.startsWith(NAV_CLASS_PREFIX)) {
+      root.classList.remove(className)
+    }
+  })
+
+  root.classList.add(`${NAV_CLASS_PREFIX}${variant}`)
+
+  if (persist) {
+    try {
+      localStorage.setItem(NAV_VARIANT_STORAGE_KEY, variant)
+    } catch (error) {
+      console.warn('Failed to persist nav variant to localStorage:', error)
+    }
+  }
+}
+
+/**
+ * Get the currently applied nav variant
+ *
+ * @returns The current nav variant name or null if none is set
+ */
+export function getCurrentNavVariant(): WhiteLabelNavVariant | null {
+  const root = document.documentElement
+
+  for (const className of root.classList) {
+    if (className.startsWith(NAV_CLASS_PREFIX)) {
+      return className.replace(NAV_CLASS_PREFIX, '') as WhiteLabelNavVariant
+    }
+  }
+
+  return null
+}
+
+/**
  * Get the currently applied theme
- * 
+ *
  * @returns The current theme name or null if no theme is explicitly set
  */
 export function getCurrentTheme(): ThemeName | null {
