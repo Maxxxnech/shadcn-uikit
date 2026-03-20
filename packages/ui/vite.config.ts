@@ -55,6 +55,10 @@ export default defineConfig({
           __dirname,
           'src/styles/theme-acronis-electric.scss'
         ),
+        'themes/acronis-white-label': resolve(
+          __dirname,
+          'src/styles/theme-acronis-white-label.scss'
+        ),
       },
       formats: ['es'],
       fileName: (format, entryName) => `${entryName}.js`,

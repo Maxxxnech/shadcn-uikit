@@ -570,11 +570,72 @@ export const ACRONIS_TOKEN_SET: TokenSet = {
 }
 
 /**
+ * Acronis White Label theme (neutral slate)
+ */
+export const WHITE_LABEL_TOKEN_SET: TokenSet = {
+  id: 'white-label',
+  name: 'White Label',
+  description: 'Neutral slate white-label theme',
+  light: {
+    background: createToken(0, 0, 100),
+    foreground: createToken(215, 26, 20),
+    card: createToken(0, 0, 100),
+    cardForeground: createToken(215, 26, 20),
+    popover: createToken(0, 0, 100),
+    popoverForeground: createToken(215, 26, 20),
+    primary: createToken(210, 16, 32),
+    primaryForeground: createToken(0, 0, 100),
+    secondary: createToken(0, 0, 100),
+    secondaryForeground: createToken(215, 26, 46),
+    muted: createToken(240, 6, 97),
+    mutedForeground: createToken(215, 26, 46),
+    accent: createToken(210, 16, 32),
+    accentForeground: createToken(0, 0, 100),
+    destructive: createToken(0, 77, 57),
+    destructiveForeground: createToken(0, 0, 100),
+    border: createToken(210, 8, 85),
+    input: createToken(210, 8, 85),
+    ring: createToken(210, 16, 32),
+  },
+  dark: {
+    background: createToken(215, 26, 20),
+    foreground: createToken(0, 0, 100),
+    card: createToken(210, 10, 23),
+    cardForeground: createToken(0, 0, 100),
+    popover: createToken(210, 10, 23),
+    popoverForeground: createToken(0, 0, 100),
+    primary: createToken(210, 16, 50),
+    primaryForeground: createToken(0, 0, 100),
+    secondary: createToken(210, 10, 30),
+    secondaryForeground: createToken(0, 0, 70),
+    muted: createToken(210, 10, 30),
+    mutedForeground: createToken(0, 0, 60),
+    accent: createToken(210, 16, 50),
+    accentForeground: createToken(0, 0, 100),
+    destructive: createToken(0, 77, 20),
+    destructiveForeground: createToken(0, 0, 100),
+    border: createToken(210, 10, 35),
+    input: createToken(210, 10, 35),
+    ring: createToken(210, 16, 50),
+  },
+  radius: {
+    sm: '0.25rem',
+    md: '0.375rem',
+    lg: '0.5rem',
+    xl: '0.75rem',
+    '2xl': '1rem',
+    full: '9999px',
+  },
+  typography: DEFAULT_TYPOGRAPHY,
+}
+
+/**
  * All predefined token sets
  */
 export const PREDEFINED_TOKEN_SETS: Record<string, TokenSet> = {
   acronis: ACRONIS_TOKEN_SET,
   default: DEFAULT_TOKEN_SET,
+  'white-label': WHITE_LABEL_TOKEN_SET,
   chat: ACRONIS_ELECTRIC_TOKEN_SET,
   ocean: OCEAN_TOKEN_SET,
   forest: FOREST_TOKEN_SET,
