@@ -1,3 +1,10 @@
+## [0.27.0](https://github.com/acronis/shadcn-uikit/compare/v0.26.0...v0.27.0) (2026-03-20)
+
+
+### Features
+
+* **theme:** add white-label theme with 20 nav variants PLTFRM-87974 ([52d62c0](https://github.com/acronis/shadcn-uikit/commit/52d62c025c7c9d830fd6b90139993b2c29e2bad8)), closes [#44515](https://github.com/acronis/shadcn-uikit/issues/44515)
+
 ## [0.26.0](https://github.com/acronis/shadcn-uikit/compare/v0.25.1...v0.26.0) (2026-03-12)
 
 
@@ -25,11 +32,4 @@
 ### Features
 
 * add portal prop to Sheet component ([e261103](https://github.com/acronis/shadcn-uikit/commit/e2611030a7471994ea075a898196edc929b28101))
-
-## [0.23.4](https://github.com/acronis/shadcn-uikit/compare/v0.23.3...v0.23.4) (2026-02-26)
-
-
-### Bug Fixes
-
-* **package:** add exports field for package.json in package.json ([d0772de](https://github.com/acronis/shadcn-uikit/commit/d0772de03d7ff5fb5eb3c67b01ed7cb7d3859906))
 
