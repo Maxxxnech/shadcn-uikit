@@ -190,6 +190,31 @@ applyColorMode('light');
 applyColorMode('system'); // Follow system preference
 ```
 
+#### Shadow DOM / embedded containers
+
+When the app is rendered inside a shadow root (e.g. via module federation), theme classes must also be applied to the inner container element — not just `document.documentElement` — because CSS inside a shadow root uses `:host` selectors that don't inherit from the document.
+
+Pass any number of additional container elements as the `extraRoots` parameter:
+
+```typescript
+import { applyTheme, applyNavVariant } from '@acronis-platform/shadcn-uikit';
+
+// Apply theme to both document.documentElement and a shadow DOM inner container
+const innerContainer = document.getElementById('app-container');
+applyTheme('acronis-ocean', true, innerContainer ? [innerContainer] : []);
+
+// Same for white-label nav variants
+applyNavVariant('ingram-micro', true, innerContainer ? [innerContainer] : []);
+```
+
+Both `applyTheme` and `applyNavVariant` accept the same optional third parameter:
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `theme` / `variant` | `ThemeName` / `WhiteLabelNavVariant` | — | The theme or variant to apply |
+| `persist` | `boolean` | `true` | Whether to persist the choice to `localStorage` |
+| `extraRoots` | `HTMLElement[]` | `[]` | Additional elements to receive the same theme classes |
+
 ### Using Alternative Themes
 
 Import additional theme CSS files:

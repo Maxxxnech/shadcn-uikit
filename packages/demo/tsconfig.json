@@ -20,7 +20,8 @@
       "@/*": ["./src/*"],
       "@acronis-platform/shadcn-uikit": ["../ui/src/index.ts"],
       "@acronis-platform/shadcn-uikit/react": ["../ui/src/react.ts"],
-      "@acronis-platform/shadcn-uikit/styles": ["../ui/src/styles/globals.css"]
+      "@acronis-platform/shadcn-uikit/styles": ["../ui/src/styles/globals.css"],
+      "@uikit-utils/*": ["../ui/src/utils/*"]
     }
   },
   "include": ["src"],

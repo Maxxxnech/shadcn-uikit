@@ -51,9 +51,9 @@ export default defineConfig({
           __dirname,
           'src/styles/theme-acronis-ocean.scss'
         ),
-        'themes/acronis-electric': resolve(
+        'themes/cyber-chat': resolve(
           __dirname,
-          'src/styles/theme-acronis-electric.scss'
+          'src/styles/theme-cyber-chat.scss'
         ),
         'themes/acronis-white-label': resolve(
           __dirname,

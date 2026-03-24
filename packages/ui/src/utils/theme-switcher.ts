@@ -23,38 +23,43 @@ const NAV_VARIANT_STORAGE_KEY = 'av-nav-variant'
 const COLOR_MODE_STORAGE_KEY = 'av-color-mode'
 
 /**
- * Apply a theme to the document root element
+ * Apply a theme to the document root element and any additional roots.
  * 
  * @param theme - The theme name to apply
  * @param persist - Whether to persist the theme choice to localStorage (default: true)
+ * @param extraRoots - Additional elements to apply the theme to (e.g. shadow DOM inner containers)
  * 
  * @example
  * ```typescript
  * import { applyTheme } from '@acronis/shadcn-uikit/utils/theme-switcher'
  * 
  * applyTheme('acronis-ocean')
+ * 
+ * // Shadow DOM usage:
+ * applyTheme('acronis-ocean', true, [shadowContainer])
  * ```
  */
-export function applyTheme(theme: ThemeName, persist = true): void {
-  const root = document.documentElement
+export function applyTheme(theme: ThemeName, persist = true, extraRoots: HTMLElement[] = []): void {
+  const allRoots = [document.documentElement, ...extraRoots]
 
-  root.classList.forEach((className) => {
-    if (className.startsWith(THEME_CLASS_PREFIX)) {
-      root.classList.remove(className)
-    }
-  })
-
-  // Remove nav variant classes when switching away from white-label
-  if (theme !== 'acronis-white-label') {
+  allRoots.forEach((root) => {
     root.classList.forEach((className) => {
-      if (className.startsWith(NAV_CLASS_PREFIX)) {
+      if (className.startsWith(THEME_CLASS_PREFIX)) {
         root.classList.remove(className)
       }
     })
-  }
 
-  const themeClass = `${THEME_CLASS_PREFIX}${theme}`
-  root.classList.add(themeClass)
+    // Remove nav variant classes when switching away from white-label
+    if (theme !== 'acronis-white-label') {
+      root.classList.forEach((className) => {
+        if (className.startsWith(NAV_CLASS_PREFIX)) {
+          root.classList.remove(className)
+        }
+      })
+    }
+
+    root.classList.add(`${THEME_CLASS_PREFIX}${theme}`)
+  })
 
   if (persist) {
     try {
@@ -66,11 +71,12 @@ export function applyTheme(theme: ThemeName, persist = true): void {
 }
 
 /**
- * Apply a white-label nav variant to the document root element
+ * Apply a white-label nav variant to the document root element and any additional roots.
  * Only effective when the white-label theme is active.
  *
  * @param variant - The nav variant name to apply
  * @param persist - Whether to persist the choice to localStorage (default: true)
+ * @param extraRoots - Additional elements to apply the variant to (e.g. shadow DOM inner containers)
  *
  * @example
  * ```typescript
@@ -78,16 +84,18 @@ export function applyTheme(theme: ThemeName, persist = true): void {
  * applyNavVariant('ingram-micro')
  * ```
  */
-export function applyNavVariant(variant: WhiteLabelNavVariant, persist = true): void {
-  const root = document.documentElement
+export function applyNavVariant(variant: WhiteLabelNavVariant, persist = true, extraRoots: HTMLElement[] = []): void {
+  const allRoots = [document.documentElement, ...extraRoots]
 
-  root.classList.forEach((className) => {
-    if (className.startsWith(NAV_CLASS_PREFIX)) {
-      root.classList.remove(className)
-    }
+  allRoots.forEach((root) => {
+    root.classList.forEach((className) => {
+      if (className.startsWith(NAV_CLASS_PREFIX)) {
+        root.classList.remove(className)
+      }
+    })
+
+    root.classList.add(`${NAV_CLASS_PREFIX}${variant}`)
   })
-
-  root.classList.add(`${NAV_CLASS_PREFIX}${variant}`)
 
   if (persist) {
     try {

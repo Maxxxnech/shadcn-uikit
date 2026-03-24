@@ -45,11 +45,12 @@ export function Home() {
 
         <div className="rounded-lg border p-6">
           <h3 className="mb-2 text-lg font-semibold">
-            <Link to="/demo">Demo</Link>,
-            <Link to="/demo/cyberchat">Chat</Link>
+            <Link to="/demo">Demo</Link>,{' '}
+            <Link to="/demo/cyberchat">Chat</Link>,{' '}
+            <Link to="/demo/cyberchat-themed">Chat (<i>Host Theming</i>)</Link>
           </h3>
           <p className="text-sm text-muted-foreground">
-            Full-featured demo application
+            Full-featured demo application. &ldquo;Host Theming&rdquo; shows <code>applyTheme</code> with <code>extraRoots</code> targeting an inner container &mdash; simulating shadow DOM embedding.
           </p>
         </div>
 
