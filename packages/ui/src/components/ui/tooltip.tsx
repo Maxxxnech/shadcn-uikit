@@ -1,42 +1,56 @@
 import * as React from 'react'
-import * as TooltipPrimitive from '@radix-ui/react-tooltip'
+import { Tooltip } from '@base-ui/react'
 
 import { cn } from '@/lib/utils'
 
-const TooltipProvider = TooltipPrimitive.Provider
+const TooltipProvider = Tooltip.Provider
 
-const Tooltip = TooltipPrimitive.Root
+const TooltipRoot = Tooltip.Root
 
-const TooltipTrigger = TooltipPrimitive.Trigger
+const TooltipTrigger = Tooltip.Trigger
 
-const TooltipContent = React.forwardRef<
-  React.ElementRef<typeof TooltipPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof TooltipPrimitive.Content>
->(({ className, sideOffset = 5, ...props }, ref) => (
-  <TooltipPrimitive.Content
-    ref={ref}
-    sideOffset={sideOffset}
-    className={cn(
-      'z-50 overflow-hidden rounded bg-popover px-4 py-4 text-xs font-medium leading-4 text-popover-foreground shadow-[0px_10px_20px_rgba(36,49,67,0.2)] animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2',
-      className
-    )}
-    {...props}
-  />
-))
-TooltipContent.displayName = TooltipPrimitive.Content.displayName
+type PositionerProps = React.ComponentPropsWithoutRef<typeof Tooltip.Positioner>
 
-const TooltipArrow = React.forwardRef<
-  React.ElementRef<typeof TooltipPrimitive.Arrow>,
-  React.ComponentPropsWithoutRef<typeof TooltipPrimitive.Arrow>
->(({ className, ...props }, ref) => (
-  <TooltipPrimitive.Arrow
-    ref={ref}
-    className={cn('fill-popover', className)}
-    width={10}
-    height={5}
-    {...props}
-  />
-))
-TooltipArrow.displayName = TooltipPrimitive.Arrow.displayName
+interface TooltipContentProps extends React.ComponentPropsWithoutRef<typeof Tooltip.Popup> {
+  sideOffset?: number
+  side?: PositionerProps['side']
+  align?: PositionerProps['align']
+  className?: string
+}
 
-export { Tooltip, TooltipTrigger, TooltipContent, TooltipArrow, TooltipProvider }
+const TooltipContent = React.forwardRef<HTMLDivElement, TooltipContentProps>(
+  ({ className, sideOffset = 5, side = 'top', align, children, ...props }, ref) => (
+    <Tooltip.Portal>
+      <Tooltip.Positioner sideOffset={sideOffset} side={side} align={align}>
+        <Tooltip.Popup
+          ref={ref}
+          className={cn(
+            'z-50 overflow-hidden rounded bg-popover px-4 py-4 text-xs font-medium leading-4 text-popover-foreground shadow-[0px_10px_20px_rgba(36,49,67,0.2)]',
+            // Base UI uses data-open / data-closed / data-starting-style / data-ending-style
+            'data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95',
+            'data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95',
+            'data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2',
+            className
+          )}
+          {...props}
+        >
+          {children}
+        </Tooltip.Popup>
+      </Tooltip.Positioner>
+    </Tooltip.Portal>
+  )
+)
+TooltipContent.displayName = 'TooltipContent'
+
+const TooltipArrow = React.forwardRef<HTMLDivElement, React.ComponentPropsWithoutRef<typeof Tooltip.Arrow>>(
+  ({ className, ...props }, ref) => (
+    <Tooltip.Arrow
+      ref={ref}
+      className={cn('fill-popover', className)}
+      {...props}
+    />
+  )
+)
+TooltipArrow.displayName = 'TooltipArrow'
+
+export { TooltipRoot as Tooltip, TooltipTrigger, TooltipContent, TooltipArrow, TooltipProvider }
