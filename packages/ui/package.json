@@ -57,8 +57,7 @@
     "storybook:build": "storybook build",
     "storybook:test:visual": "test-storybook",
     "storybook:test:visual:update": "test-storybook --updateSnapshot",
-    "storybook:test:visual:docker": "docker compose -f ../../docker-compose.storybook.yml up --abort-on-container-exit --exit-code-from test-runner",
-    "storybook:test:visual:docker:update": "docker compose -f ../../docker-compose.storybook.yml run --rm test-runner pnpm storybook:test:visual -- --url http://storybook:6006 --updateSnapshot"
+    "storybook:test:visual:docker": "docker compose -f ../../docker-compose.storybook.yml up --abort-on-container-exit --exit-code-from test-runner"
   },
   "peerDependencies": {
     "react": "^18.2.0",

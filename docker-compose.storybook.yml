@@ -4,7 +4,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.storybook
-    command: sh -c "pnpm storybook:build && npx http-server storybook-static -p 6006 --silent"
+    command: sh -c "pnpm storybook:build && pnpm exec http-server storybook-static -p 6006 --silent"
     ports:
       - "6006:6006"
     healthcheck:
@@ -21,5 +21,5 @@ services:
     depends_on:
       storybook:
         condition: service_healthy
-    environment:
-      - TARGET_URL=http://storybook:6006
+    volumes:
+      - ./packages/ui/test/__snapshots__:/app/packages/ui/test/__snapshots__

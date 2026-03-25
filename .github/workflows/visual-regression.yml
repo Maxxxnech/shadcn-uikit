@@ -17,4 +17,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: visual-regression-diffs
-          path: packages/ui/src/components/ui/__stories__/__snapshots__/__diff_output__/
+          path: packages/ui/test/__snapshots__/__diff_output__/
