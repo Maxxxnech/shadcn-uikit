@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import { Empty } from '../empty'
+import { Empty, EmptyIcon, EmptyHeader, EmptyTitle, EmptyDescription } from '../empty'
 import { Inbox } from 'lucide-react'
 
 const meta = {
@@ -13,18 +13,26 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
-  args: {
-    title: 'No data',
-    description: 'There is no data to display',
-  },
+  render: () => (
+    <Empty>
+      <EmptyHeader>
+        <EmptyTitle>No data</EmptyTitle>
+        <EmptyDescription>There is no data to display</EmptyDescription>
+      </EmptyHeader>
+    </Empty>
+  ),
 }
 
 export const WithIcon: Story = {
   render: () => (
-    <Empty
-      icon={<Inbox className="h-16 w-16" />}
-      title="No messages"
-      description="You don't have any messages yet"
-    />
+    <Empty>
+      <EmptyIcon>
+        <Inbox />
+      </EmptyIcon>
+      <EmptyHeader>
+        <EmptyTitle>No messages</EmptyTitle>
+        <EmptyDescription>You don&apos;t have any messages yet</EmptyDescription>
+      </EmptyHeader>
+    </Empty>
   ),
 }
