@@ -1,11 +1,15 @@
 import * as React from 'react'
-import { Tabs } from '@base-ui/react'
+import { Tabs as TabsPrimitive } from '@base-ui/react'
 
 import { cn } from '@/lib/utils'
 
-const TabsList = React.forwardRef<HTMLDivElement, Tabs.List.Props>(
+// Export Root directly as Tabs so consumers can use <Tabs defaultValue="..."> without
+// accessing the namespace object. TabsPrimitive retains the namespace for internal use.
+const Tabs = TabsPrimitive.Root
+
+const TabsList = React.forwardRef<HTMLDivElement, TabsPrimitive.List.Props>(
   ({ className, ...props }, ref) => (
-    <Tabs.List
+    <TabsPrimitive.List
       ref={ref}
       className={cn('inline-flex items-stretch rounded-md', className)}
       {...props}
@@ -14,9 +18,9 @@ const TabsList = React.forwardRef<HTMLDivElement, Tabs.List.Props>(
 )
 TabsList.displayName = 'TabsList'
 
-const TabsTrigger = React.forwardRef<HTMLElement, Tabs.Tab.Props>(
+const TabsTrigger = React.forwardRef<HTMLElement, TabsPrimitive.Tab.Props>(
   ({ className, ...props }, ref) => (
-    <Tabs.Tab
+    <TabsPrimitive.Tab
       ref={ref}
       className={cn(
         'inline-flex flex-1 items-center justify-center whitespace-nowrap border border-primary px-2 py-1 text-sm font-semibold text-primary transition-all -mr-px first:rounded-l-md last:rounded-r-md last:mr-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-active:bg-primary/10 data-active:text-foreground',
@@ -28,9 +32,9 @@ const TabsTrigger = React.forwardRef<HTMLElement, Tabs.Tab.Props>(
 )
 TabsTrigger.displayName = 'TabsTrigger'
 
-const TabsContent = React.forwardRef<HTMLDivElement, Tabs.Panel.Props>(
+const TabsContent = React.forwardRef<HTMLDivElement, TabsPrimitive.Panel.Props>(
   ({ className, ...props }, ref) => (
-    <Tabs.Panel
+    <TabsPrimitive.Panel
       ref={ref}
       className={cn(
         'mt-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
