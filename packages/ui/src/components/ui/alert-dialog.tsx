@@ -19,7 +19,7 @@ const AlertDialogOverlay = React.forwardRef<
   <AlertDialog.Backdrop
     ref={ref}
     className={cn(
-      "fixed inset-0 z-50 bg-black/80 data-open:animate-in data-closed:animate-out data-closed:fade-out-0 data-open:fade-in-0",
+      "fixed inset-0 z-50 bg-black/80 data-[open]:animate-in data-[closed]:animate-out data-[closed]:fade-out-0 data-[open]:fade-in-0",
       className
     )}
     {...props}
@@ -39,7 +39,7 @@ const AlertDialogContent = React.forwardRef<
       <AlertDialog.Popup
         ref={ref}
         className={cn(
-          "fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background p-6 shadow-lg duration-200 data-open:animate-in data-closed:animate-out data-closed:fade-out-0 data-open:fade-in-0 data-closed:zoom-out-95 data-open:zoom-in-95 data-closed:slide-out-to-left-1/2 data-closed:slide-out-to-top-dialog-offset data-open:slide-in-from-left-1/2 data-open:slide-in-from-top-dialog-offset sm:rounded-lg",
+          "fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background p-6 shadow-lg duration-200 data-[open]:animate-in data-[closed]:animate-out data-[closed]:fade-out-0 data-[open]:fade-in-0 data-[closed]:zoom-out-95 data-[open]:zoom-in-95 data-[closed]:slide-out-to-left-1/2 data-[closed]:slide-out-to-top-dialog-offset data-[open]:slide-in-from-left-1/2 data-[open]:slide-in-from-top-dialog-offset sm:rounded-lg",
           className
         )}
         {...props}

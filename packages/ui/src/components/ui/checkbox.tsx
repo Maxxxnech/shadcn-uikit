@@ -16,14 +16,14 @@ const Checkbox = React.forwardRef<
       'hover:border-input/50',
       'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
       'disabled:cursor-not-allowed disabled:bg-muted/10 disabled:border-muted/10',
-      'data-checked:bg-primary data-checked:border-primary data-checked:text-primary-foreground',
-      'data-indeterminate:bg-primary data-indeterminate:border-primary data-indeterminate:text-primary-foreground',
+      'data-[checked]:bg-primary data-[checked]:border-primary data-[checked]:text-primary-foreground',
+      'data-[indeterminate]:bg-primary data-[indeterminate]:border-primary data-[indeterminate]:text-primary-foreground',
       className
     )}
     {...props}
   >
     {/* keepMounted ensures the indicator stays in the DOM so we can always render the correct icon */}
-    <CheckboxPrimitive.Indicator keepMounted className={cn('flex items-center justify-center text-current')}>
+    <CheckboxPrimitive.Indicator keepMounted className={cn('flex items-center justify-center text-current data-[unchecked]:hidden')}>
       {indeterminate ? (
         <Minus className="h-3 w-3" />
       ) : (
