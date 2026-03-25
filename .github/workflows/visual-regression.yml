@@ -1,0 +1,20 @@
+# .github/workflows/visual-regression.yml
+name: Visual Regression
+
+on: [push, pull_request]
+
+jobs:
+  visual-regression:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run visual regression tests
+        run: docker compose -f docker-compose.storybook.yml up --abort-on-container-exit --exit-code-from test-runner
+
+      - name: Upload diff artifacts on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: visual-regression-diffs
+          path: packages/ui/src/components/ui/__stories__/__snapshots__/__diff_output__/

@@ -1,0 +1,25 @@
+# docker-compose.storybook.yml
+services:
+  storybook:
+    build:
+      context: .
+      dockerfile: Dockerfile.storybook
+    command: sh -c "pnpm storybook:build && npx http-server storybook-static -p 6006 --silent"
+    ports:
+      - "6006:6006"
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:6006 || exit 1"]
+      interval: 5s
+      timeout: 3s
+      retries: 30
+
+  test-runner:
+    build:
+      context: .
+      dockerfile: Dockerfile.storybook
+    command: pnpm storybook:test:visual -- --url http://storybook:6006
+    depends_on:
+      storybook:
+        condition: service_healthy
+    environment:
+      - TARGET_URL=http://storybook:6006

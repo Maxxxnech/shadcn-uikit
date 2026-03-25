@@ -56,7 +56,9 @@
     "storybook": "storybook dev -p 6006",
     "storybook:build": "storybook build",
     "storybook:test:visual": "test-storybook",
-    "storybook:test:visual:update": "test-storybook --updateSnapshot"
+    "storybook:test:visual:update": "test-storybook --updateSnapshot",
+    "storybook:test:visual:docker": "docker compose -f ../../docker-compose.storybook.yml up --abort-on-container-exit --exit-code-from test-runner",
+    "storybook:test:visual:docker:update": "docker compose -f ../../docker-compose.storybook.yml run --rm test-runner pnpm storybook:test:visual -- --url http://storybook:6006 --updateSnapshot"
   },
   "peerDependencies": {
     "react": "^18.2.0",
@@ -97,7 +99,7 @@
     "@radix-ui/react-switch": "^1.2.6",
     "@radix-ui/react-tabs": "^1.1.13",
     "@radix-ui/react-tooltip": "^1.2.8",
-    "@radix-ui/react-visually-hidden": "^1.2.3",
+    "@radix-ui/react-visually-hidden": "^1.2.4",
     "@tanstack/react-table": "^8.21.3",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.0",
@@ -136,6 +138,7 @@
     "autoprefixer": "^10.4.17",
     "eslint": "9.39.2",
     "happy-dom": "20.1.0",
+    "http-server": "^14.1.1",
     "jest-image-snapshot": "6.5.1",
     "postcss": "^8.5.6",
     "sass-embedded": "1.97.2",
