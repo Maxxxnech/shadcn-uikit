@@ -20,10 +20,8 @@ type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
   render: () => (
-    <SidebarProvider>
-      <Sidebar>
-        <SidebarContent />
-      </Sidebar>
-    </SidebarProvider>
+    <Sidebar>
+      <SidebarContent />
+    </Sidebar>
   ),
 }
