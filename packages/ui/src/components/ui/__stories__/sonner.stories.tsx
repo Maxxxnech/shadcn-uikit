@@ -18,7 +18,7 @@ export const Default: Story = {
   render: () => (
     <>
       <Button onClick={() => toast('Event has been created')}>Show Toast</Button>
-      <Toaster position="bottom-center" />
+      <Toaster />
     </>
   ),
   play: async ({ canvasElement }) => {
@@ -31,7 +31,7 @@ export const Success: Story = {
   render: () => (
     <>
       <Button onClick={() => toast.success('Success message')}>Show Success</Button>
-      <Toaster position="bottom-center" />
+      <Toaster />
     </>
   ),
   play: async ({ canvasElement }) => {
@@ -44,7 +44,7 @@ export const Error: Story = {
   render: () => (
     <>
       <Button onClick={() => toast.error('Error message')}>Show Error</Button>
-      <Toaster position="bottom-center" />
+      <Toaster />
     </>
   ),
   play: async ({ canvasElement }) => {
@@ -65,7 +65,7 @@ export const MultipleToasts: Story = {
           toast.info('New update available')
         }}
       >Show Multiple Toasts</Button>
-      <Toaster position="bottom-center" />
+      <Toaster />
     </>
   ),
   play: async ({ canvasElement }) => {
@@ -89,7 +89,7 @@ export const WithAction: Story = {
       >
         Show Toast with Action
       </Button>
-      <Toaster position="bottom-center" />
+      <Toaster />
     </>
   ),
   play: async ({ canvasElement }) => {

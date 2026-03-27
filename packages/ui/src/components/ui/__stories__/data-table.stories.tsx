@@ -86,12 +86,10 @@ const columns: ColumnDef<Payment>[] = [
 
 export const Default: Story = {
   render: () => <DataTable columns={columns} data={payments} />,
-  args: { columns, data: payments },
 }
 
 export const Empty: Story = {
   render: () => <DataTable columns={columns} data={[]} />,
-  args: { columns, data: [] },
 }
 
 function DataTableWithToolbarAndPagination() {
@@ -126,5 +124,4 @@ function DataTableWithToolbarAndPagination() {
 
 export const WithToolbarAndPagination: Story = {
   render: () => <DataTableWithToolbarAndPagination />,
-  args: { columns, data: payments },
 }
