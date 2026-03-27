@@ -47,7 +47,10 @@ export function ThemeSwitcherDemo() {
           >
             <option value="acronis-default">Acronis Default</option>
             <option value="acronis-ocean">Acronis Ocean</option>
-            <option value="acronis-white-label">Acronis White Label</option>
+            <option value="purple">White Label — Purple</option>
+            <option value="ingram-micro">White Label — Ingram Micro</option>
+            <option value="telstra">White Label — Telstra</option>
+            <option value="dark-gray">White Label — Dark Gray</option>
           </select>
         </div>
 

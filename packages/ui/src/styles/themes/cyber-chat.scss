@@ -4,14 +4,14 @@
  * Based on Figma design with primary blue #0285FF and dark navy #00204D
  */
 
-@mixin theme-acronis-electric {
+@mixin theme-cyber-chat {
   /* ============================================
      PRIMITIVE TOKENS - CYBER CHAT PALETTE
      ============================================ */
 
   /* Brand Colors - Cyber Blue Palette */
   --color-brand-primary: 210 100% 50%; /* #0285FF - Bright cyber blue */
-  --color-brand-lightest:  210 50% 97%; /* #0285FF - Bright cyber blue */
+  --color-brand-lightest: 210 50% 97%; /* Near-white tint of cyber blue */
   --color-brand-secondary: 210 100% 15%; /* #00204D - Deep navy */
   --color-brand-tertiary: 210 100% 65%; /* #4DA6FF - Light cyber blue */
 
@@ -70,9 +70,8 @@
   /* --av-secondary-foreground: var(--color-text-primary); */
 
   /* Muted - inherit from token system for dynamic theming */
-  //--av-muted: var(--color-brand-lightest);
-  --av-muted: 210 100% 91%; /* Commented out to allow token switching */
-  //--av-muted-foreground: var(--color-text-secondary);
+  --av-muted: var(--color-brand-lightest);
+  --av-muted-foreground: var(--color-text-secondary);
 
   /* Accent */
   --av-accent: var(--color-surface-tertiary);
@@ -132,7 +131,7 @@
   --av-table-row-separator: 213 65% 46%; /* rgba(38,104,197,0.05) - using base color, opacity in component */
 }
 
-@mixin theme-acronis-electric-dark {
+@mixin theme-cyber-chat-dark {
   /* ============================================
      SEMANTIC TOKENS - DARK MODE OVERRIDES
      ============================================ */
@@ -214,10 +213,10 @@
 }
 
 /* Theme class for explicit application */
-.theme-acronis-electric {
-  @include theme-acronis-electric;
+.theme-cyber-chat {
+  @include theme-cyber-chat;
 
   &.dark {
-    @include theme-acronis-electric-dark;
+    @include theme-cyber-chat-dark;
   }
 }

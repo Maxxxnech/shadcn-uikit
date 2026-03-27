@@ -6,7 +6,7 @@
  * It includes both light and dark mode variants.
  */
 
-@mixin theme-acronis-white-label {
+@mixin theme-acronis-white-label-base {
   /* ============================================
      PRIMITIVE TOKENS - WHITE LABEL
      ============================================ */
@@ -195,7 +195,7 @@
   --av-chart-yellow: oklch(84% 0.14 95deg);
 }
 
-@mixin theme-acronis-white-label-dark {
+@mixin theme-acronis-white-label-base-dark {
   /* ============================================
      SEMANTIC TOKENS - DARK MODE OVERRIDES
      ============================================ */
@@ -390,34 +390,122 @@
    THEME CLASSES
    ============================================ */
 
-/* Base theme class — defaults to purple nav */
-.theme-acronis-white-label {
-  @include theme-acronis-white-label;
+.theme-purple {
+  @include theme-acronis-white-label-base;
   @include nav-purple;
-
-  &.dark {
-    @include theme-acronis-white-label-dark;
-  }
+  &.dark { @include theme-acronis-white-label-base-dark; }
 }
 
-/* Nav variant classes — compose with .theme-acronis-white-label */
-.theme-acronis-white-label.nav-purple { @include nav-purple; }
-.theme-acronis-white-label.nav-brown { @include nav-brown; }
-.theme-acronis-white-label.nav-sand { @include nav-sand; }
-.theme-acronis-white-label.nav-light-gray { @include nav-light-gray; }
-.theme-acronis-white-label.nav-dark-gray { @include nav-dark-gray; }
-.theme-acronis-white-label.nav-ingram-micro { @include nav-ingram-micro; }
-.theme-acronis-white-label.nav-red-fire-brick { @include nav-red-fire-brick; }
-.theme-acronis-white-label.nav-yellow-1c { @include nav-yellow-1c; }
-.theme-acronis-white-label.nav-deep-sky-itkontoret { @include nav-deep-sky-itkontoret; }
-.theme-acronis-white-label.nav-blue-yellow-uss-signal { @include nav-blue-yellow-uss-signal; }
-.theme-acronis-white-label.nav-red-home-pl { @include nav-red-home-pl; }
-.theme-acronis-white-label.nav-orange-tsukaeru-helpox { @include nav-orange-tsukaeru-helpox; }
-.theme-acronis-white-label.nav-green-also-choise-df { @include nav-green-also-choise-df; }
-.theme-acronis-white-label.nav-light-blue-hp { @include nav-light-blue-hp; }
-.theme-acronis-white-label.nav-purple-fusion-media { @include nav-purple-fusion-media; }
-.theme-acronis-white-label.nav-virtual-one { @include nav-virtual-one; }
-.theme-acronis-white-label.nav-telstra { @include nav-telstra; }
-.theme-acronis-white-label.nav-deep-purple { @include nav-deep-purple; }
-.theme-acronis-white-label.nav-pinky { @include nav-pinky; }
-.theme-acronis-white-label.nav-virtuozzo { @include nav-virtuozzo; }
+.theme-brown {
+  @include theme-acronis-white-label-base;
+  @include nav-brown;
+  &.dark { @include theme-acronis-white-label-base-dark; }
+}
+
+.theme-sand {
+  @include theme-acronis-white-label-base;
+  @include nav-sand;
+  &.dark { @include theme-acronis-white-label-base-dark; }
+}
+
+.theme-light-gray {
+  @include theme-acronis-white-label-base;
+  @include nav-light-gray;
+  &.dark { @include theme-acronis-white-label-base-dark; }
+}
+
+.theme-dark-gray {
+  @include theme-acronis-white-label-base;
+  @include nav-dark-gray;
+  &.dark { @include theme-acronis-white-label-base-dark; }
+}
+
+.theme-ingram-micro {
+  @include theme-acronis-white-label-base;
+  @include nav-ingram-micro;
+  &.dark { @include theme-acronis-white-label-base-dark; }
+}
+
+.theme-red-fire-brick {
+  @include theme-acronis-white-label-base;
+  @include nav-red-fire-brick;
+  &.dark { @include theme-acronis-white-label-base-dark; }
+}
+
+.theme-yellow-1c {
+  @include theme-acronis-white-label-base;
+  @include nav-yellow-1c;
+  &.dark { @include theme-acronis-white-label-base-dark; }
+}
+
+.theme-deep-sky-itkontoret {
+  @include theme-acronis-white-label-base;
+  @include nav-deep-sky-itkontoret;
+  &.dark { @include theme-acronis-white-label-base-dark; }
+}
+
+.theme-blue-yellow-uss-signal {
+  @include theme-acronis-white-label-base;
+  @include nav-blue-yellow-uss-signal;
+  &.dark { @include theme-acronis-white-label-base-dark; }
+}
+
+.theme-red-home-pl {
+  @include theme-acronis-white-label-base;
+  @include nav-red-home-pl;
+  &.dark { @include theme-acronis-white-label-base-dark; }
+}
+
+.theme-orange-tsukaeru-helpox {
+  @include theme-acronis-white-label-base;
+  @include nav-orange-tsukaeru-helpox;
+  &.dark { @include theme-acronis-white-label-base-dark; }
+}
+
+.theme-green-also-choise-df {
+  @include theme-acronis-white-label-base;
+  @include nav-green-also-choise-df;
+  &.dark { @include theme-acronis-white-label-base-dark; }
+}
+
+.theme-light-blue-hp {
+  @include theme-acronis-white-label-base;
+  @include nav-light-blue-hp;
+  &.dark { @include theme-acronis-white-label-base-dark; }
+}
+
+.theme-purple-fusion-media {
+  @include theme-acronis-white-label-base;
+  @include nav-purple-fusion-media;
+  &.dark { @include theme-acronis-white-label-base-dark; }
+}
+
+.theme-virtual-one {
+  @include theme-acronis-white-label-base;
+  @include nav-virtual-one;
+  &.dark { @include theme-acronis-white-label-base-dark; }
+}
+
+.theme-telstra {
+  @include theme-acronis-white-label-base;
+  @include nav-telstra;
+  &.dark { @include theme-acronis-white-label-base-dark; }
+}
+
+.theme-deep-purple {
+  @include theme-acronis-white-label-base;
+  @include nav-deep-purple;
+  &.dark { @include theme-acronis-white-label-base-dark; }
+}
+
+.theme-pinky {
+  @include theme-acronis-white-label-base;
+  @include nav-pinky;
+  &.dark { @include theme-acronis-white-label-base-dark; }
+}
+
+.theme-virtuozzo {
+  @include theme-acronis-white-label-base;
+  @include nav-virtuozzo;
+  &.dark { @include theme-acronis-white-label-base-dark; }
+}

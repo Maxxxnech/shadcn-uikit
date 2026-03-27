@@ -66,6 +66,7 @@ export default defineConfig(({ mode }) => ({
       '@acronis-platform/shadcn-uikit/react': resolve(__dirname, '../ui/src/react.ts'),
       '@acronis-platform/shadcn-uikit/styles': resolve(__dirname, '../ui/src/styles/index.scss'),
       '@acronis-platform/shadcn-uikit': resolve(__dirname, '../ui/src/react.ts'),
+      '@uikit-utils': resolve(__dirname, '../ui/src/utils'),
     },
     extensions: ['.mjs', '.js', '.mts', '.ts', '.jsx', '.tsx', '.json'],
   },

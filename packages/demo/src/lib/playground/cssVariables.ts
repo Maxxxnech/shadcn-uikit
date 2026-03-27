@@ -32,9 +32,9 @@ function applyThemeClass(root: HTMLElement, tokenSetId: string): void {
   existingThemeClasses.forEach((className) => root.classList.remove(className));
 
   // Apply theme class based on token set ID
-  // Convert tokenSetId to theme class name (e.g., 'electric' -> 'theme-acronis-electric', 'ocean' -> 'theme-ocean')
+  // Convert tokenSetId to theme class name (e.g., 'chat' -> 'theme-cyber-chat', 'ocean' -> 'theme-ocean')
   const themeClassName =
-    tokenSetId === 'chat' ? 'theme-acronis-electric' : `theme-${tokenSetId}`;
+    tokenSetId === 'chat' ? 'theme-cyber-chat' : `theme-${tokenSetId}`;
   root.classList.add(themeClassName);
 }
 
