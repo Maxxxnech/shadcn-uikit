@@ -11,9 +11,11 @@ const Slider = React.forwardRef<
 >(({ className, defaultValue, value, ...props }, ref) => {
   // Normalize values to arrays for consistency. Base UI accepts number | readonly number[]
   // but arrays provide more predictable behavior for thumb rendering and state management.
-  const normalizedValue = value ? (Array.isArray(value) ? value : [value]) : undefined
-  const normalizedDefaultValue = defaultValue ? (Array.isArray(defaultValue) ? defaultValue : [defaultValue]) : [0]
-  const thumbCount = (normalizedValue || normalizedDefaultValue).length
+  const normalizedValue =
+    value != null ? (Array.isArray(value) ? value : [value]) : undefined
+  const normalizedDefaultValue =
+    defaultValue != null ? (Array.isArray(defaultValue) ? defaultValue : [defaultValue]) : [0]
+  const thumbCount = (normalizedValue ?? normalizedDefaultValue).length
 
   return (
     <SliderPrimitive.Root
