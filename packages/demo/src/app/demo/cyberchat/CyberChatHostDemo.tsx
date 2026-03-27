@@ -5,14 +5,14 @@ import { CyberChatPage } from './CyberChatPage'
 const THEMES: { value: ThemeName; label: string }[] = [
   { value: 'acronis-default', label: 'Default' },
   { value: 'acronis-ocean', label: 'Ocean' },
-  { value: 'acronis-white-label', label: 'White Label' },
+  { value: 'purple', label: 'White Label' },
   { value: 'cyber-chat', label: 'Cyber Chat' },
 ]
 
 function getThemeClasses(el: HTMLElement | null): string {
   if (!el) return '—'
   const classes = Array.from(el.classList).filter(
-    (c) => c.startsWith('theme-') || c.startsWith('nav-')
+    (c) => c.startsWith('theme-')
   )
   return classes.length ? classes.join(' ') : '—'
 }

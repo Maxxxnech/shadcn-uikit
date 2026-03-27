@@ -5,8 +5,6 @@ export {
   applyTheme,
   getCurrentTheme,
   loadPersistedTheme,
-  applyNavVariant,
-  getCurrentNavVariant,
   applyColorMode,
   getCurrentColorMode,
   loadPersistedColorMode,
@@ -14,7 +12,6 @@ export {
   watchSystemColorScheme,
   initializeThemeSystem,
   type ThemeName,
-  type WhiteLabelNavVariant,
   type ColorMode,
 } from './utils'
 export * from './types'

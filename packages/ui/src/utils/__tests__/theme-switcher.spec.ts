@@ -1,9 +1,7 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest'
 import {
   applyTheme,
-  applyNavVariant,
   getCurrentTheme,
-  getCurrentNavVariant,
 } from '../theme-switcher'
 
 function makeContainer(): HTMLElement {
@@ -56,18 +54,12 @@ describe('applyTheme', () => {
       expect(localStorage.getItem('av-theme')).toBeNull()
     })
 
-    it('should remove nav variant classes when switching away from white-label', () => {
-      document.documentElement.classList.add('nav-ingram-micro')
-      applyTheme('acronis-ocean')
+    it('should remove previous theme class when switching to a white-label variant', () => {
+      applyTheme('ingram-micro')
+      applyTheme('purple')
 
-      expect(document.documentElement.classList.contains('nav-ingram-micro')).toBe(false)
-    })
-
-    it('should keep nav variant classes when applying white-label theme', () => {
-      document.documentElement.classList.add('nav-ingram-micro')
-      applyTheme('acronis-white-label')
-
-      expect(document.documentElement.classList.contains('nav-ingram-micro')).toBe(true)
+      expect(document.documentElement.classList.contains('theme-ingram-micro')).toBe(false)
+      expect(document.documentElement.classList.contains('theme-purple')).toBe(true)
     })
   })
 
@@ -111,26 +103,6 @@ describe('applyTheme', () => {
       cleanup(c2)
     })
 
-    it('should remove nav variant classes from extra root when switching away from white-label', () => {
-      const container = makeContainer()
-      container.classList.add('nav-ingram-micro')
-
-      applyTheme('acronis-ocean', false, [container])
-
-      expect(container.classList.contains('nav-ingram-micro')).toBe(false)
-      cleanup(container)
-    })
-
-    it('should keep nav variant classes on extra root when applying white-label theme', () => {
-      const container = makeContainer()
-      container.classList.add('nav-ingram-micro')
-
-      applyTheme('acronis-white-label', false, [container])
-
-      expect(container.classList.contains('nav-ingram-micro')).toBe(true)
-      cleanup(container)
-    })
-
     it('should not affect extra root classes unrelated to theming', () => {
       const container = makeContainer()
       container.classList.add('my-custom-class')
@@ -153,91 +125,7 @@ describe('applyTheme', () => {
 })
 
 // ---------------------------------------------------------------------------
-// applyNavVariant
-// ---------------------------------------------------------------------------
-
-describe('applyNavVariant', () => {
-  describe('without extraRoots', () => {
-    it('should add nav variant class to document.documentElement', () => {
-      applyNavVariant('ingram-micro')
-
-      expect(document.documentElement.classList.contains('nav-ingram-micro')).toBe(true)
-    })
-
-    it('should replace previous nav variant class on document.documentElement', () => {
-      applyNavVariant('purple')
-      applyNavVariant('ingram-micro')
-
-      expect(document.documentElement.classList.contains('nav-purple')).toBe(false)
-    })
-
-    it('should persist nav variant to localStorage when persist is true', () => {
-      applyNavVariant('ingram-micro', true)
-
-      expect(localStorage.getItem('av-nav-variant')).toBe('ingram-micro')
-    })
-
-    it('should not persist nav variant to localStorage when persist is false', () => {
-      applyNavVariant('ingram-micro', false)
-
-      expect(localStorage.getItem('av-nav-variant')).toBeNull()
-    })
-  })
-
-  describe('with extraRoots', () => {
-    it('should add nav variant class to the extra root element', () => {
-      const container = makeContainer()
-
-      applyNavVariant('ingram-micro', false, [container])
-
-      expect(container.classList.contains('nav-ingram-micro')).toBe(true)
-      cleanup(container)
-    })
-
-    it('should add nav variant class to document.documentElement AND extra root', () => {
-      const container = makeContainer()
-
-      applyNavVariant('ingram-micro', false, [container])
-
-      expect(document.documentElement.classList.contains('nav-ingram-micro')).toBe(true)
-      cleanup(container)
-    })
-
-    it('should replace previous nav variant class on extra root', () => {
-      const container = makeContainer()
-      applyNavVariant('purple', false, [container])
-      applyNavVariant('ingram-micro', false, [container])
-
-      expect(container.classList.contains('nav-purple')).toBe(false)
-      cleanup(container)
-    })
-
-    it('should apply nav variant to multiple extra roots', () => {
-      const c1 = makeContainer()
-      const c2 = makeContainer()
-
-      applyNavVariant('ingram-micro', false, [c1, c2])
-
-      expect(c1.classList.contains('nav-ingram-micro')).toBe(true)
-      expect(c2.classList.contains('nav-ingram-micro')).toBe(true)
-      cleanup(c1)
-      cleanup(c2)
-    })
-
-    it('should not affect extra root classes unrelated to nav variants', () => {
-      const container = makeContainer()
-      container.classList.add('my-custom-class')
-
-      applyNavVariant('ingram-micro', false, [container])
-
-      expect(container.classList.contains('my-custom-class')).toBe(true)
-      cleanup(container)
-    })
-  })
-})
-
-// ---------------------------------------------------------------------------
-// getCurrentTheme / getCurrentNavVariant (smoke tests — not changed, but covered)
+// getCurrentTheme
 // ---------------------------------------------------------------------------
 
 describe('getCurrentTheme', () => {
@@ -252,14 +140,17 @@ describe('getCurrentTheme', () => {
   })
 })
 
-describe('getCurrentNavVariant', () => {
-  it('should return the currently applied nav variant', () => {
-    applyNavVariant('ingram-micro', false)
+describe('getCurrentTheme — white-label variants', () => {
+  it('should return the white-label variant name as current theme', () => {
+    applyTheme('ingram-micro', false)
 
-    expect(getCurrentNavVariant()).toBe('ingram-micro')
+    expect(getCurrentTheme()).toBe('ingram-micro')
   })
 
-  it('should return null when no nav variant class is present', () => {
-    expect(getCurrentNavVariant()).toBeNull()
+  it('should switch between white-label variants correctly', () => {
+    applyTheme('purple', false)
+    applyTheme('telstra', false)
+
+    expect(getCurrentTheme()).toBe('telstra')
   })
 })
