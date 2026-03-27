@@ -70,9 +70,8 @@
   /* --av-secondary-foreground: var(--color-text-primary); */
 
   /* Muted - inherit from token system for dynamic theming */
-  //--av-muted: var(--color-brand-lightest);
-  --av-muted: 210 100% 91%; /* Commented out to allow token switching */
-  //--av-muted-foreground: var(--color-text-secondary);
+  --av-muted: var(--color-brand-lightest);
+  --av-muted-foreground: var(--color-text-secondary);
 
   /* Accent */
   --av-accent: var(--color-surface-tertiary);
