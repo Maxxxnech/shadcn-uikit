@@ -28,7 +28,7 @@ const SelectTrigger = React.forwardRef<
     {...props}
   >
     {children}
-    <BaseSelect.Icon className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground transition-transform data-[state=open]:rotate-180 pointer-events-none">
+    <BaseSelect.Icon className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground transition-transform data-[open]:rotate-180 pointer-events-none">
       <ChevronDown className="h-4 w-4" />
     </BaseSelect.Icon>
   </BaseSelect.Trigger>
