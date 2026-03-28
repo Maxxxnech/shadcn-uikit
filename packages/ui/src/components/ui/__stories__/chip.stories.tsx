@@ -20,9 +20,12 @@ export const Default: Story = {
 
 export const WithIcon: Story = {
   render: () => (
-    <Chip>
-      Tag
-      <X className="ml-1 h-3 w-3" />
-    </Chip>
+    <Chip icon={<X className="h-3 w-3" />}>Tag</Chip>
+  ),
+}
+
+export const WithRemove: Story = {
+  render: () => (
+    <Chip onRemove={() => {}}>Tag</Chip>
   ),
 }

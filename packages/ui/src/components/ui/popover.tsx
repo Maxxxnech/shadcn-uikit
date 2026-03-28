@@ -1,33 +1,42 @@
 import * as React from 'react'
-import * as PopoverPrimitive from '@radix-ui/react-popover'
+import { Popover } from '@base-ui/react'
 
 import { cn } from '@/lib/utils'
 
-const Popover = PopoverPrimitive.Root
+const PopoverRoot = Popover.Root
 
-const PopoverTrigger = PopoverPrimitive.Trigger
+const PopoverTrigger = Popover.Trigger
 
-const PopoverPortal = PopoverPrimitive.Portal
+const PopoverPortal = Popover.Portal
 
 const PopoverContent = React.forwardRef<
-  React.ElementRef<typeof PopoverPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof PopoverPrimitive.Content> & {
+  HTMLDivElement,
+  Omit<Popover.Popup.Props, 'ref'> & {
+    align?: 'start' | 'center' | 'end'
+    side?: 'top' | 'bottom' | 'left' | 'right' | 'inline-end' | 'inline-start'
+    sideOffset?: number
     portal?: boolean
   }
->(({ className, align = 'center', sideOffset = 4, portal = true, ...props }, ref) => {
-  const element = (<PopoverPrimitive.Content
-    ref={ref}
-    align={align}
-    sideOffset={sideOffset}
-    className={cn(
-      'z-50 w-72 rounded-md border bg-popover p-4 text-popover-foreground shadow-md outline-none data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 origin-[--radix-popover-content-transform-origin]',
-      className
-    )}
-    {...props}
-  />)
+>(({ className, align = 'center', side = 'bottom', sideOffset = 4, portal = true, ...props }, ref) => {
+  const positioner = (
+    <Popover.Positioner align={align} side={side} sideOffset={sideOffset}>
+      <Popover.Popup
+        ref={ref}
+        className={cn(
+          'z-50 w-72 rounded-md border bg-popover p-4 text-popover-foreground shadow-md outline-none',
+          'data-[open]:animate-in data-[closed]:animate-out data-[closed]:fade-out-0 data-[open]:fade-in-0',
+          'data-[closed]:zoom-out-95 data-[open]:zoom-in-95',
+          'data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2',
+          'data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2',
+          className
+        )}
+        {...props}
+      />
+    </Popover.Positioner>
+  )
 
-  return portal ? <PopoverPrimitive.Portal>{element}</PopoverPrimitive.Portal> : element
+  return portal ? <Popover.Portal>{positioner}</Popover.Portal> : positioner
 })
-PopoverContent.displayName = PopoverPrimitive.Content.displayName
+PopoverContent.displayName = 'PopoverContent'
 
-export { Popover, PopoverTrigger, PopoverPortal, PopoverContent }
+export { PopoverRoot as Popover, PopoverTrigger, PopoverPortal, PopoverContent }

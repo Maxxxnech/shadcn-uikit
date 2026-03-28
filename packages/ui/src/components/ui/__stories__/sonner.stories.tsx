@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
+import { within } from '@storybook/test'
 import { Toaster } from '../sonner'
 import { Button } from '../button'
 import { toast } from 'sonner'
@@ -20,6 +21,10 @@ export const Default: Story = {
       <Toaster />
     </>
   ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    canvas.getByText('Show Toast').click()
+  },
 }
 
 export const Success: Story = {
@@ -29,6 +34,10 @@ export const Success: Story = {
       <Toaster />
     </>
   ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    canvas.getByText('Show Success').click()
+  },
 }
 
 export const Error: Story = {
@@ -38,6 +47,31 @@ export const Error: Story = {
       <Toaster />
     </>
   ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    canvas.getByText('Show Error').click()
+  },
+}
+
+export const MultipleToasts: Story = {
+  render: () => (
+    <>
+      <Button
+        onClick={() => {
+          toast('Event has been created')
+          toast.success('Profile saved successfully')
+          toast.error('Failed to delete item')
+          toast.warning('Disk space running low')
+          toast.info('New update available')
+        }}
+      >Show Multiple Toasts</Button>
+      <Toaster />
+    </>
+  ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    canvas.getByText('Show Multiple Toasts').click()
+  },
 }
 
 export const WithAction: Story = {
@@ -58,4 +92,8 @@ export const WithAction: Story = {
       <Toaster />
     </>
   ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    canvas.getByText('Show Toast with Action').click()
+  },
 }
