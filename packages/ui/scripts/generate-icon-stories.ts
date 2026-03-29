@@ -50,6 +50,22 @@ function main() {
     fs.readFileSync(CATEGORIES_FILE, 'utf-8')
   )
 
+  // Determine the set of filenames that will be written
+  const expectedFilenames = new Set(
+    Object.keys(categories).map(
+      (categoryName) =>
+        `icons-${categoryName.replace(/[+]/g, '-').replace(/[_]/g, '-')}.stories.tsx`
+    )
+  )
+
+  // Remove stale story files that are no longer in categories
+  for (const existing of fs.readdirSync(STORIES_DIR)) {
+    if (existing.startsWith('icons-') && existing.endsWith('.stories.tsx') && !expectedFilenames.has(existing)) {
+      fs.rmSync(path.join(STORIES_DIR, existing))
+      console.log(`Removed stale story file: ${existing}`)
+    }
+  }
+
   let generated = 0
 
   for (const [categoryName, entries] of Object.entries(categories)) {
