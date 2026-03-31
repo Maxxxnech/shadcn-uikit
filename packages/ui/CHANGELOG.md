@@ -1,3 +1,13 @@
+## [0.32.0](https://github.com/acronis/shadcn-uikit/compare/v0.31.0...v0.32.0) (2026-03-31)
+
+
+### Features
+
+* add Storybook stories for theme layouts and text colors ([dd540ca](https://github.com/acronis/shadcn-uikit/commit/dd540ca94d6fd2dac25969af31fcb7ccce512678))
+* add Storybook support for styles and update TypeScript configuration ([606ce26](https://github.com/acronis/shadcn-uikit/commit/606ce26ed4790a10307221267cf8fa87de87fd0c))
+* enhance test runner to support full-page snapshots in Storybook stories ([d6aacb9](https://github.com/acronis/shadcn-uikit/commit/d6aacb9a05dd26f85c6060cb49e8105db4f248ba))
+* enhance theme support with global types and new Storybook stories for color and status tokens ([3c4459d](https://github.com/acronis/shadcn-uikit/commit/3c4459db6d685edf6c02f1c38fac0db2fe14b5fb))
+
 ## [0.31.0](https://github.com/acronis/shadcn-uikit/compare/v0.30.1...v0.31.0) (2026-03-31)
 
 
@@ -83,12 +93,4 @@
 * update checkbox component layout for improved alignment ([a43de6c](https://github.com/acronis/shadcn-uikit/commit/a43de6c6691791846c2feb44baf689fde6b76e48))
 * update data attribute syntax for consistency across components ([d5d846e](https://github.com/acronis/shadcn-uikit/commit/d5d846ed5ac11c8314c7b58f15b20da3ab88f039))
 * update switch snapshots ([db74af2](https://github.com/acronis/shadcn-uikit/commit/db74af2570555d70885f3b873a1d985658a46012))
-
-## [0.28.0](https://github.com/acronis/shadcn-uikit/compare/v0.27.0...v0.28.0) (2026-03-27)
-
-
-### Features
-
-* **ADP-49599:** simplified theme logic, removed applyNavVariant ([14320b5](https://github.com/acronis/shadcn-uikit/commit/14320b552b57dd3e4a5680e635ea42aa04271eea))
-* **ADP-49599:** updated applyTheme and applyNavVariant to work with shadow root ([c5500cf](https://github.com/acronis/shadcn-uikit/commit/c5500cf4d7868e6d37c560258bfc9ab5b6446500))
 
